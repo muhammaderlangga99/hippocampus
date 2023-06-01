@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Models\Items;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ItemsController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +18,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home.index', [
-        'title' => 'Home'
+        'title' => 'Home',
+        'items' => Items::latest()->paginate(8),
     ]);
 });
 
@@ -29,9 +32,11 @@ Route::get('/about', function () {
 Route::get('/product', function () {
     return view('product.index', [
         'title' => 'Product',
-        // 'products' => Product::all()
+        'items' => Items::latest()->paginate(8),
+        'jumbotron' => Items::latest()->paginate(4),
     ]);
 });
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -40,6 +45,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // post keranjang
+    Route::controller(ItemsController::class)->group(function () {
+        Route::get('/items', [ItemsController::class, 'index'])->name('items.index');
+        Route::get('/items/create', [ItemsController::class, 'create'])->name('items.create');
+        Route::post('/items', [ItemsController::class, 'store'])->name('items.store');
+        Route::get('/items/{item}', [ItemsController::class, 'show'])->name('items.show');
+        Route::get('/items/{item:slug}/edit', [ItemsController::class, 'edit'])->name('items.edit');
+        Route::patch('/items/{item:slug}', [ItemsController::class, 'update'])->name('items.update');
+        Route::delete('/items/{item:slug}', [ItemsController::class, 'destroy'])->name('items.destroy');
+    });
 });
 
 require __DIR__ . '/auth.php';

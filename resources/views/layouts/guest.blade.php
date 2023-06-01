@@ -37,23 +37,11 @@
                     @else
                         <h2 class="text-xl font-semibold text-slate-900 text-center">Create an account</h2>
                     @endif
-                    <p class="text-xs text-slate-500 text-center my-1">login untuk berikan yang terbaik untuk
-                        himatika</p>
-                    <a href=""
-                        class="w-full bg-gray-900 rounded-full mt-2 text-white inline-block text-center py-2 text-sm"><i
-                            class="text-base bi bi-github mr-2"></i> Login
-                        with
-                        Github</a>
-                </div>
-                <div class="or flex justify-center items-center">
-                    <div class="w-4/12 h-0.5 bg-slate-200"></div>
-                    <p class="text-xs text-slate-500 text-center my-1 mx-5">or</p>
-                    <div class="w-4/12 h-0.5 bg-slate-200"></div>
+                    <p class="text-xs text-slate-500 text-center my-1">login to manage content here</p>
                 </div>
 
                 {{ $slot }}
             </div>
-
 
         </div>
 
