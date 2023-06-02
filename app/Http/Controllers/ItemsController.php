@@ -52,8 +52,9 @@ class ItemsController extends Controller
             'discount' => 'required',
         ]);
 
-        //hitung harga setelah diskon
-        $harga = $validate['price'] - ($validate['price'] * $validate['discount'] / 100);
+        //count percentage discount
+        $discount = $validate['price'] * ($request->discount / 100);
+        $harga = $validate['price'] - $discount;
 
         Items::create([
             'category_id' => $request->category,
@@ -113,8 +114,11 @@ class ItemsController extends Controller
             'price' => 'required',
         ]);
 
-        //hitung harga setelah diskon
-        $harga = $validate['price'] - ($validate['price'] * $request->price / 100);
+        //count percentage discount
+        $discount = $validate['price'] * ($request->discount / 100);
+        $harga = $validate['price'] - $discount;
+
+
 
         // upload image to storage/app/items
         if ($request->hasFile('image')) {
