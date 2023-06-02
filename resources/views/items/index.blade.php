@@ -52,10 +52,16 @@
             </div>
         @endif
 
-        <a href="{{ route('items.create') }}" type="button"
-            class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-10">+
-            add
-            Product</a>
+        <div class="flex justify-between">
+            <a href="{{ route('items.create') }}"
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-10">+
+                Add
+                Product</a>
+            <a href="{{ route('categori.index') }}"
+                class="text-blue-600 bg-blue-50 hover:bg-blue-100 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-10 border border-blue-400">
+                Add Category</a>
+
+        </div>
 
         <div class="relative overflow-x-auto shadow-md rounded-2xl mt-4">
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -87,7 +93,7 @@
                                 {{ $item->name }}
                             </th>
                             <td class="px-6 py-4">
-                                {{ $item->category_id }}
+                                {{ $item->categori->name }}
                             </td>
                             <td class="px-6 py-4">
                                 {{ $item->price }}

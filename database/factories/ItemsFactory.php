@@ -20,7 +20,7 @@ class ItemsFactory extends Factory
         $name = $this->faker->sentence(3);
         return [
             'name' => $name,
-            'category_id' => fake()->numberBetween(1, 4),
+            'categori_id' => fake()->numberBetween(2, 5),
             'slug' => Str::slug($name),
             'link' => fake()->url,
             'description' => fake()->paragraph(2),

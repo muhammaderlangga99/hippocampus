@@ -70,7 +70,7 @@
                     </li>
                     <li>
                         <a href="{{ route('items.index') }}"
-                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 @if (Request::is(['items', 'items/*'])) bg-blue-50 text-blue-700 border border-blue-400 @endif">
+                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 @if (Request::is(['items', 'items/*', 'categori', 'categori/*'])) bg-blue-50 text-blue-700 border border-blue-400 @endif">
                             <i class="bi bi-cart-fill text-lg text-slate-500"></i>
                             <span class="flex-1 ml-3 whitespace-nowrap">Post Items</span>
                         </a>

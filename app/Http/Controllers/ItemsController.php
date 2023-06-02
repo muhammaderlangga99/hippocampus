@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Items;
+use App\Models\Categori;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -31,6 +32,7 @@ class ItemsController extends Controller
     {
         return view('items.create', [
             'title' => 'Create Items',
+            'categories' => Categori::all(),
         ]);
     }
 
@@ -57,7 +59,7 @@ class ItemsController extends Controller
         $harga = $validate['price'] - $discount;
 
         Items::create([
-            'category_id' => $request->category,
+            'categori_id' => $request->category,
             'link' => $request->link,
             'name' => $request->name,
             'slug' => Str::slug($request->name),
@@ -92,6 +94,7 @@ class ItemsController extends Controller
         return view('items.edit', [
             'title' => 'Edit Items',
             'item' => $item,
+            'categories' => Categori::all(),
         ]);
     }
 
@@ -130,7 +133,7 @@ class ItemsController extends Controller
 
         Items::where('id', $item->id)
             ->update([
-                'category_id' => $request->category,
+                'categori_id' => $request->category,
                 'link' => $request->link,
                 'name' => $request->name,
                 'slug' => Str::slug($request->name),

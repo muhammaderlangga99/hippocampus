@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\CategoriController;
 use App\Models\Items;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemsController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Categori;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +57,17 @@ Route::middleware('auth')->group(function () {
         Route::get('/items/{item:slug}/edit', [ItemsController::class, 'edit'])->name('items.edit');
         Route::patch('/items/{item:slug}', [ItemsController::class, 'update'])->name('items.update');
         Route::delete('/items/{item:slug}', [ItemsController::class, 'destroy'])->name('items.destroy');
+    });
+
+    // category
+    Route::controller(CategoriController::class)->group(function () {
+        Route::get('/categori', [CategoriController::class, 'index'])->name('categori.index');
+        Route::get('/categori/create', [CategoriController::class, 'create'])->name('categori.create');
+        Route::post('/categori', [CategoriController::class, 'store'])->name('categori.store');
+        Route::get('/categori/{categori:slug}', [CategoriController::class, 'show'])->name('categori.show');
+        Route::get('/categori/{categori:slug}/edit', [CategoriController::class, 'edit'])->name('categori.edit');
+        Route::patch('/categori/{categori:slug}', [CategoriController::class, 'update'])->name('categori.update');
+        Route::delete('/categori/{categori:slug}', [CategoriController::class, 'destroy'])->name('categori.destroy');
     });
 });
 

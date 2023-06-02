@@ -16,8 +16,7 @@
                         </path>
                     </svg>
                     <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to
-                            upload</span> or drag and drop</p>
-                    <p class="text-xs text-gray-500 dark:text-gray-400">PNG, JPG* </p>
+                            upload</span> PNG, JPG* </p>
                 </div>
                 <img id="output" class="w-full object-cover m-auto z-10" />
                 <input id="dropzone-file" type="file" class="hidden" accept="image/*" onchange="loadFile(event)"
@@ -43,11 +42,15 @@
                 Category*</label>
             <select id="countries"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('category') border-red-600 ring-red-600 @enderror"
-                name="category" value="{{ old('category') }}">
-                <option value="1">United States</option>
-                <option value="2">Canada</option>
-                <option value="3">France</option>
-                <option value="4">Germany</option>
+                name="category">
+                <option value="" selected disabled>Select Category</option>
+                @foreach ($categories->skip(1) as $category)
+                    @if (old('category') == $category->id)
+                        <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
+                    @else
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endif
+                @endforeach
             </select>
             @error('category')
                 <div class="text-xs text-red-600 font-medium pb-3">{{ $message }}</div>
