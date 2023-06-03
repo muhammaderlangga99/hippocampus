@@ -47,31 +47,40 @@
     </div>
 
     <swiper-container id="article" init="false" class="container max-w-7xl m-auto overflow-x-hidden relative">
-        @foreach ($items as $item)
-            <swiper-slide class="card group px-3 md:px-0">
-                <a href="/tulisan/" class="card inline-block bg-slate-100 rounded-3xl pt-5">
-                    <div class="rounded-2xl w-11/12 h-44 overflow-hidden m-auto flex justify-center items-center">
-                        <img src="{{ asset('/storage/' . $item->image) }}" alt=""
-                            class="object-cover group-hover:scale-125 w-full m-auto thumb bg-white group-hover:shadow-lg  group-hover:shadow-slate-300 transition-all duration-300">
-                    </div>
-                    <div class="title w-11/12 mt-3 pb-3 m-auto">
-                        <h4
-                            class="tulisan inline-block text-xl font-semibold font-poppins leading-tight tracking-normal duration-500">
-                            <span class="link link-underline link-underline-black">
-                                {{ $item->name }} <span class="ml-3 text-xs font-thin m-auto">Disc.
-                                    {{ $item->discount }}%</span>
-                            </span>
-                        </h4>
-                        <div class="date flex w-11/12 font-base text-black">
-                            <p class="category text-black font-bold rounded-full text-xl">
-                                IDR {{ $item->price }}</p>
-                            {{-- <p class="font-mono text-xs text-slate-900 font-light my-auto">
-                        </p> --}}
+        @if ($items->count() == 0)
+            <div class="flex flex-col items-center justify-center mt-20">
+                <h1 class="text-2xl font-bold mt-5 text-center">Items not found</h1>
+            </div>
+        @else
+            @foreach ($items as $item)
+                <swiper-slide class="card group px-3 md:px-0">
+                    <a href="/tulisan/" class="card inline-block bg-slate-100 rounded-3xl pt-5">
+                        <div class="rounded-2xl w-11/12 h-44 overflow-hidden m-auto flex justify-center items-center">
+                            <img src="{{ asset('/storage/' . $item->image) }}" alt=""
+                                class="object-cover group-hover:scale-125 w-full m-auto thumb bg-white group-hover:shadow-lg  group-hover:shadow-slate-300 transition-all duration-300">
                         </div>
-                    </div>
-                </a>
-            </swiper-slide>
-        @endforeach
+                        <div class="title w-11/12 mt-3 pb-3 m-auto">
+                            <h4
+                                class="tulisan inline-block text-xl font-semibold font-poppins leading-tight tracking-normal duration-500">
+                                <span class="link link-underline link-underline-black">
+                                    {{ $item->name }}
+                                    @if ($item->discount > 0)
+                                        <span class="ml-3 text-xs font-thin m-auto">Disc.
+                                            {{ $item->discount }}%</span>
+                                    @endif
+                                </span>
+                            </h4>
+                            <div class="date flex w-11/12 font-base text-black">
+                                <p class="category text-black font-bold rounded-full text-xl">
+                                    IDR {{ $item->price }}</p>
+                                {{-- <p class="font-mono text-xs text-slate-900 font-light my-auto">
+                        </p> --}}
+                            </div>
+                        </div>
+                    </a>
+                </swiper-slide>
+            @endforeach
+        @endif
     </swiper-container>
 
 

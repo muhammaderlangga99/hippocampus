@@ -17,9 +17,18 @@ class ItemsController extends Controller
      */
     public function index()
     {
+        $items = Items::latest();
+
+        if (request('items')) {
+            $items->where('name', 'like', '%' . request('items') . '%')
+                ->orWhere('price', 'like', '%' . request('items') . '%')
+                ->orWhere('discount', 'like', '%' . request('items') . '%')
+                ->orWhere('categori_id', 'like', '%' . request('items') . '%');
+        }
+
         return view('items.index', [
             'title' => 'Items',
-            'items' => Items::latest()->simplePaginate(15),
+            'items' => $items->paginate(8)->withQueryString(),
         ]);
     }
 
@@ -51,7 +60,6 @@ class ItemsController extends Controller
             'content' => 'required',
             'image' => 'required | image ',
             'price' => 'required',
-            'discount' => 'required',
         ]);
 
         //count percentage discount

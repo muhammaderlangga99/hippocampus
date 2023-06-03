@@ -19,6 +19,7 @@ class CategoriFactory extends Factory
         return [
             'name' => $this->faker->word,
             'slug' => $this->faker->slug,
+            'image' => $this->faker->word,
         ];
     }
 }

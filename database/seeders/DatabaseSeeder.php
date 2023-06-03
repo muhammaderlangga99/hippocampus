@@ -28,10 +28,11 @@ class DatabaseSeeder extends Seeder
             'id' => 1,
             'name' => '-',
             'slug' => '-',
+            'image' => '-',
         ]);
 
 
-        \App\Models\Items::factory(50)->create();
-        Categori::factory(4)->create();
+        // \App\Models\Items::factory(50)->create();
+        // Categori::factory(4)->create();
     }
 }

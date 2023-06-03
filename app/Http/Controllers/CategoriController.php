@@ -6,6 +6,7 @@ use App\Models\Items;
 use App\Models\Categori;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CategoriController extends Controller
 {
@@ -42,11 +43,13 @@ class CategoriController extends Controller
     {
         $validate = $request->validate([
             'name' => 'required|min:3|max:255',
+            'image' => 'required | image'
         ]);
 
         Categori::create([
             'name' => $validate['name'],
             'slug' => Str::slug($validate['name']),
+            'image' => $request->file('image')->store('categori'),
         ]);
 
         return redirect('/categori')->with('success', 'Data berhasil ditambahkan!');
@@ -60,9 +63,16 @@ class CategoriController extends Controller
      */
     public function show(Categori $categori)
     {
+        $categories = $categori->items();
+        if (request('category')) {
+            $categories->where('name', 'like', '%' . request('category') . '%')
+                ->orWhere('price', 'like', '%' . request('category') . '%')
+                ->orWhere('discount', 'like', '%' . request('category') . '%');
+        }
+
         return view('categori.show', [
-            'title' => $categori->name,
-            'items' => $categori->items()->paginate(8),
+            'title' => $categori,
+            'items' => $categories->paginate(8)->withQueryString(),
         ]);
     }
 
@@ -97,6 +107,9 @@ class CategoriController extends Controller
      */
     public function destroy(Categori $categori)
     {
+        if ($categori->image) {
+            Storage::delete($categori->image);
+        }
         // ubah category_id pada tabel items menjadi null
         Items::where('categori_id', $categori->id)->update(['categori_id' => 1]);
         Categori::destroy($categori->id);

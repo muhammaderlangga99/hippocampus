@@ -4,7 +4,7 @@
             <img src="{{ asset('img/hippocampuss.png') }}" class="h-10 mr-1" alt="Flowbite Logo" />
             <span class="self-center text-md whitespace-nowrap text-blue-600">Hippo<b>campus</b></span>
         </a>
-        <div class="flex md:order-2">
+        <form method="GET" action="/product" class="flex md:order-2 md:hidden lg:flex">
             <button type="button" data-collapse-toggle="navbar-search" aria-controls="navbar-search"
                 aria-expanded="false"
                 class="md:hidden text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 rounded-lg text-sm p-2.5 mr-1">
@@ -28,7 +28,7 @@
                 </div>
                 <input type="text" id="search-navbar"
                     class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Search...">
+                    placeholder="Search..." name="navbar" value="{{ old('navbar') }}" required>
             </div>
             <button data-collapse-toggle="navbar-search" type="button"
                 class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
@@ -41,9 +41,9 @@
                         clip-rule="evenodd"></path>
                 </svg>
             </button>
-        </div>
+        </form>
         <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-search">
-            <div class="relative mt-3 md:hidden">
+            <form method="GET" action="/product" class="relative mt-3 md:hidden">
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                     <svg class="w-5 h-5 text-gray-500" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg">
@@ -54,8 +54,8 @@
                 </div>
                 <input type="text" id="search-navbar"
                     class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Search...">
-            </div>
+                    placeholder="Search..." name="navbar" value="{{ old('navbar') }}">
+            </form>
             <ul
                 class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white">
 
@@ -83,6 +83,13 @@
                         class="block py-2 pl-3 pr-4 text-grey-700 rounded lg:bg-transparent
                         hover:text-blue-500 @if (Request::is('contact')) text-blue-700 bg-blue-50 @endif lg:p-0">Contact</a>
                 </li>
+                @auth
+                    <li>
+                        <a href="/dashboard"
+                            class="block py-2 pl-3 pr-4 text-grey-700 rounded lg:bg-transparent
+                    hover:text-blue-500 @if (Request::is('contact')) text-blue-700 bg-blue-50 @endif lg:p-0">dashboard</a>
+                    </li>
+                @endauth
             </ul>
         </div>
     </div>

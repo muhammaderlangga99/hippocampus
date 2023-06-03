@@ -32,10 +32,29 @@ Route::get('/about', function () {
 });
 
 Route::get('/product', function () {
+    $items = Items::latest();
+
+    if (request('navbar')) {
+        $items = Items::where('name', 'like', '%' . request('navbar') . '%')
+            ->orWhere('price', 'like', '%' . request('navbar') . '%')
+            ->orWhere('discount', 'like', '%' . request('navbar') . '%')
+            ->orWhere('categori_id', 'like', '%' . request('navbar') . '%');
+    } else {
+        $items = Items::latest();
+    }
+
     return view('product.index', [
         'title' => 'Product',
-        'items' => Items::latest()->paginate(8),
-        'jumbotron' => Items::latest()->paginate(4),
+        'items' => $items->paginate(8)->withQueryString(),
+        'jumbotron' => Categori::all(),
+        'all' => Items::paginate(8)->withQueryString(),
+    ]);
+});
+
+Route::get('/product/{categori:slug}', function (Categori $categori) {
+    return view('product.show', [
+        'title' => $categori->name,
+        'items' => $categori->items()->paginate(8)->withQueryString(),
     ]);
 });
 

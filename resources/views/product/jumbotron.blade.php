@@ -31,7 +31,7 @@
         <div class="swiper mySwiper">
 
             <div class="swiper-wrapper object-cover m-auto">
-                @foreach ($jumbotron as $item)
+                @foreach ($jumbotron->skip(1) as $item)
                     <a href="/product/{{ $item->slug }}"
                         class="inline-block swiper-slide bg-slate-500 group shadow-lg max-w-7xl">
                         <img src="{{ asset('/storage/' . $item->image) }}"

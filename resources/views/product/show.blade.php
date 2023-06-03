@@ -1,28 +1,10 @@
-<style>
-    #article {
-        width: 100%;
-        height: 100%;
-    }
+@extends('main')
 
-    .link-underline {
-        background-image: linear-gradient(to right, #000 0%, #000 100%) !important; // warna garis bawah
-        background-size:  !important; // ukuran garis bawah
-        background-repeat: no-repeat !important;
-        background-position: 0 100% !important;
-        background-repeat: no-repeat !important;
-        background-position: 0 100% !important;
-        background-size: 0 3px !important;
-        transition: .5s ease-in-out !important;
-    }
+@section('content')
+    <section class="categori mt-20 font-montserrat">
+        <h2 class="text-5xl font-bold text-slate-900 text-center">In Category {{ $title }}</h2>
 
-    a.card:hover .link-underline {
-        background-size: 100% 3px !important;
-    }
-</style>
-<section class="max-w-7xl m-auto font-montserrat mt-10 md:border-b border-slate-300 pb-5">
-    <div class="px-3 md:px-0">
-        <h2 class="text-3xl font-bold text-slate-800">New Items</h2>
-        <div class="grid gap-y-3 grid-cols-2 lg:grid-cols-4 md:grid-cols-3 mt-5">
+        <div class="grid m-auto w-10/12 gap-y-3 grid-cols-2 lg:grid-cols-4 md:grid-cols-3 mt-16">
             @foreach ($items as $item)
                 <swiper-slide class="card group px-3 md:px-0">
                     <a href="/product/{{ $item->slug }}" class="card inline-block bg-slate-100 rounded-3xl pt-5">
@@ -43,13 +25,11 @@
                             <div class="date flex w-11/12 font-base text-black">
                                 <p class="category text-black font-bold rounded-full text-base md:text-xl md:mx-2">IDR
                                     {{ $item->price }}</p>
-                                {{-- <p class="font-mono text-xs text-slate-900 font-light my-auto">
-                        </p> --}}
                             </div>
                         </div>
                     </a>
                 </swiper-slide>
             @endforeach
         </div>
-    </div>
-</section>
+    </section>
+@endsection
