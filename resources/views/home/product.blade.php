@@ -69,10 +69,10 @@
                                 class="tulisan inline-block text-xl font-semibold font-poppins leading-tight tracking-normal duration-500">
                                 <span class="link link-underline link-underline-black">
                                     {{ $item->name }}
-                                    @if ($item->discount > 0)
+                                    {{-- @if ($item->discount > 0)
                                         <span class="ml-3 text-xs font-thin m-auto">Disc.
                                             {{ $item->discount }}%</span>
-                                    @endif
+                                    @endif --}}
                                 </span>
                             </h4>
                             <div class="date flex w-11/12 font-base text-black">

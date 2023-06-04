@@ -75,7 +75,7 @@
                 <li>
                     <a href="/product"
                         class="block py-2 pl-3 pr-4 text-grey-700 rounded lg:bg-transparent
-                        hover:text-blue-500 @if (Request::is('product')) text-blue-700 bg-blue-50 @endif lg:p-0">Product</a>
+                        hover:text-blue-500 @if (Request::is(['product/*', 'product'])) text-blue-700 bg-blue-50 @endif lg:p-0">Product</a>
                 </li>
 
                 <li>

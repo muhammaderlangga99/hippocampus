@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('link');
             $table->string('slug');
             $table->string('name');
-            $table->string('description');
+            $table->text('description');
             $table->string('image');
             $table->integer('price');
             $table->integer('discount')->nullable();

@@ -60,6 +60,7 @@ class ItemsController extends Controller
             'content' => 'required',
             'image' => 'required | image ',
             'price' => 'required',
+            'description' => 'required'
         ]);
 
         //count percentage discount
