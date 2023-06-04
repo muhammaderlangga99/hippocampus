@@ -1,6 +1,6 @@
 <nav class="bg-white @if (Request::is('contact')) bg-blue-50 @endif border-gray-200 font-montserrat">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="https://flowbite.com/" class="flex items-center">
+        <a href="/" class="flex items-center">
             <img src="{{ asset('img/hippocampuss.png') }}" class="h-10 mr-1" alt="Flowbite Logo" />
             <span class="self-center text-md whitespace-nowrap text-blue-600">Hippo<b>campus</b></span>
         </a>

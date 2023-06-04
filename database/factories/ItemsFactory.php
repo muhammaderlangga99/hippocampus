@@ -18,6 +18,10 @@ class ItemsFactory extends Factory
     public function definition()
     {
         $name = $this->faker->sentence(3);
+        $price = $this->faker->numberBetween(1000000, 5000000);
+        $discount = $this->faker->numberBetween(10, 50);
+        $count_discount = $price * ($discount / 100);
+        $after_discount = $price - $count_discount;
         return [
             'name' => $name,
             'categori_id' => fake()->numberBetween(2, 5),
@@ -25,8 +29,9 @@ class ItemsFactory extends Factory
             'link' => fake()->url,
             'description' => fake()->paragraph(2),
             'image' => fake()->imageUrl(640, 480, 'animals', true),
-            'price' => fake()->numberBetween(1000000, 5000000),
-            'discount' => fake()->numberBetween(0, 50),
+            'price' => $price,
+            'discount' => $discount,
+            'after_discount' => $after_discount,
         ];
     }
 }

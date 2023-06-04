@@ -56,6 +56,7 @@ Route::get('/product/{item:slug}', function (Items $item) {
     return view('product.detail', [
         'title' => $item->name,
         'item' => $item,
+        'items' => Items::where('categori_id', $item->categori_id)->take(10)->get(),
     ]);
 });
 

@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('image');
             $table->integer('price');
             $table->integer('discount')->nullable();
+            $table->integer('after_discount')->nullable();
             $table->timestamps();
         });
     }

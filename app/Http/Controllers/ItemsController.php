@@ -148,8 +148,9 @@ class ItemsController extends Controller
                 'slug' => Str::slug($request->name),
                 'description' => $request->content,
                 'image' => $validate['image'], // store image to storage/app/items
-                'price' => $harga,
+                'price' => $request->price,
                 'discount' => $request->discount,
+                'after_discount' => $harga
             ]);
 
         return redirect('/items')->with('success', 'Item has been updated!');

@@ -96,7 +96,10 @@
                                 {{ $item->categori->name }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ number_format($item->price, 0, ',', '.') }}
+                                @if ($item->discount > 0)
+                                    <span class="line-through">Rp{{ number_format($item->price, 0, ',', '.') }}</span>
+                                @endif
+                                <span class="ml-3">Rp{{ number_format($item->after_discount, 0, ',', '.') }}</span>
                             </td>
                             <td class="px-6 py-4">
                                 @if ($item->discount > 0)

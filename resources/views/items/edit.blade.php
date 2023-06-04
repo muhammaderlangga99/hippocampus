@@ -72,7 +72,7 @@
             <label for="discount" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Discount</label>
             <input type="number" id="discount"
                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light @error('discount') border-red-600 ring-red-600 @enderror"
-                placeholder="25" required name="discount" value="{{ old('discount', $item->discount) }}">
+                placeholder="25" name="discount" value="{{ old('discount', $item->discount) }}">
             @error('discount')
                 <div class="text-xs text-red-600 font-medium pb-3">{{ $message }}</div>
             @enderror
