@@ -32,11 +32,17 @@
 
             <div class="swiper-wrapper object-cover m-auto">
                 @foreach ($jumbotron->skip(1) as $item)
-                    <a href="/product/{{ $item->slug }}"
+                    <a href="/category/{{ $item->slug }}"
                         class="inline-block swiper-slide bg-slate-500 group shadow-lg max-w-7xl">
-                        <img src="{{ asset('/storage/' . $item->image) }}"
-                            class="transition-all duration-200 group-hover:scale-125 group-hover:blur-md w-full object-cover m-auto"
-                            alt="">
+                        @if ($item->image == Storage::exists($item->image))
+                            <img src="{{ asset('/storage/' . $item->image) }}"
+                                class="transition-all duration-200 group-hover:scale-125 group-hover:blur-md w-full object-cover m-auto"
+                                alt="">
+                        @else
+                            <img src="{{ asset('img/jumbotron2.jpg') }}"
+                                class="transition-all duration-200 group-hover:scale-125 group-hover:blur-md w-full object-cover m-auto"
+                                alt="">
+                        @endif
                         <h2 class="md:text-2xl px-3 font-bold text-white absolute">{{ $item->name }}</h2>
                     </a>
                 @endforeach

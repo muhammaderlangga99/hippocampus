@@ -62,7 +62,7 @@
                             {{ $item->categori->name }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $item->price }}
+                            {{ number_format($item->price, 0, ',', '.') }}
                         </td>
                         <td class="px-6 py-4">
                             @if ($item->discount > 0)

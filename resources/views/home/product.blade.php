@@ -54,10 +54,15 @@
         @else
             @foreach ($items as $item)
                 <swiper-slide class="card group px-3 md:px-0">
-                    <a href="/tulisan/" class="card inline-block bg-slate-100 rounded-3xl pt-5">
+                    <a href="/product/{{ $item->slug }}" class="card inline-block bg-slate-100 rounded-3xl pt-5">
                         <div class="rounded-2xl w-11/12 h-44 overflow-hidden m-auto flex justify-center items-center">
-                            <img src="{{ asset('/storage/' . $item->image) }}" alt=""
-                                class="object-cover group-hover:scale-125 w-full m-auto thumb bg-white group-hover:shadow-lg  group-hover:shadow-slate-300 transition-all duration-300">
+                            @if ($item->image == Storage::exists($item->image))
+                                <img src="{{ asset('/storage/' . $item->image) }}" alt=""
+                                    class="object-cover group-hover:scale-125 w-full m-auto thumb bg-white group-hover:shadow-lg  group-hover:shadow-slate-300 transition-all duration-300">
+                            @else
+                                <img src="{{ asset('img/hippocampuss.png') }}" alt=""
+                                    class="object-cover group-hover:scale-125 w-full m-auto thumb bg-white group-hover:shadow-lg  group-hover:shadow-slate-300 transition-all duration-300">
+                            @endif
                         </div>
                         <div class="title w-11/12 mt-3 pb-3 m-auto">
                             <h4
@@ -72,7 +77,7 @@
                             </h4>
                             <div class="date flex w-11/12 font-base text-black">
                                 <p class="category text-black font-bold rounded-full text-xl">
-                                    IDR {{ $item->price }}</p>
+                                    IDR {{ number_format($item->price, 0, ',', '.') }}</p>
                                 {{-- <p class="font-mono text-xs text-slate-900 font-light my-auto">
                         </p> --}}
                             </div>

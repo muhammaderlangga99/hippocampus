@@ -32,7 +32,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
-        // \App\Models\Items::factory(50)->create();
-        // Categori::factory(4)->create();
+        \App\Models\Items::factory(50)->create();
+        Categori::factory(4)->create();
+        \App\Models\Contact::factory(20)->create();
     }
 }

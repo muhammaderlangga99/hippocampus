@@ -3,7 +3,7 @@
 @section('content')
     @if ($jumbotron->count() == 1)
         <div class="flex flex-col items-center font-montserrat justify-center mt-20">
-            <h1 class="text-2xl font-bold mt-5">Items not found</h1>
+            <h1 class="text-2xl font-bold mt-5">Categories not found</h1>
         </div>
     @else
         <section class="header">

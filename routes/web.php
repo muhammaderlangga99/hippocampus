@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoriController;
+use App\Http\Controllers\ContactController;
 use App\Models\Items;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemsController;
@@ -45,28 +46,42 @@ Route::get('/product', function () {
 
     return view('product.index', [
         'title' => 'Product',
-        'items' => $items->paginate(8)->withQueryString(),
+        'items' => $items->take(8)->get(),
         'jumbotron' => Categori::all(),
         'all' => Items::paginate(8)->withQueryString(),
     ]);
 });
 
-Route::get('/product/{categori:slug}', function (Categori $categori) {
+Route::get('/product/{item:slug}', function (Items $item) {
+    return view('product.detail', [
+        'title' => $item->name,
+        'item' => $item,
+    ]);
+});
+
+Route::get('/category/{categori:slug}', function (Categori $categori) {
     return view('product.show', [
         'title' => $categori->name,
         'items' => $categori->items()->paginate(8)->withQueryString(),
     ]);
 });
 
+Route::get('/contact', function () {
+    return view('contact.index', [
+        'title' => 'Contact',
+    ]);
+})->name('contacts');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
+    // Route::post('/register', [ProfileController::class, 'store'])->name('profile.store');
     // post keranjang
     Route::controller(ItemsController::class)->group(function () {
         Route::get('/items', [ItemsController::class, 'index'])->name('items.index');
@@ -81,13 +96,22 @@ Route::middleware('auth')->group(function () {
     // category
     Route::controller(CategoriController::class)->group(function () {
         Route::get('/categori', [CategoriController::class, 'index'])->name('categori.index');
-        Route::get('/categori/create', [CategoriController::class, 'create'])->name('categori.create');
         Route::post('/categori', [CategoriController::class, 'store'])->name('categori.store');
         Route::get('/categori/{categori:slug}', [CategoriController::class, 'show'])->name('categori.show');
-        Route::get('/categori/{categori:slug}/edit', [CategoriController::class, 'edit'])->name('categori.edit');
         Route::patch('/categori/{categori:slug}', [CategoriController::class, 'update'])->name('categori.update');
         Route::delete('/categori/{categori:slug}', [CategoriController::class, 'destroy'])->name('categori.destroy');
     });
+
+    Route::controller(ContactController::class)->group(function () {
+        Route::get('/contacts', [ContactController::class, 'index'])->name('contact.index');
+        Route::post('/contacts', [ContactController::class, 'store'])->name('contact.store');
+        Route::get('/contacts/{contact:slug}', [ContactController::class, 'show'])->name('contact.show');
+        Route::patch('/contacts/{contact:slug}', [ContactController::class, 'update'])->name('contact.update');
+        Route::delete('/contacts/{contact}', [ContactController::class, 'destroy'])->name('contact.destroy');
+    });
 });
+
+Route::post('/contacts', [ContactController::class, 'store'])->name('contact.store');
+
 
 require __DIR__ . '/auth.php';

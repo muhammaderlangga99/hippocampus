@@ -1,4 +1,4 @@
-<nav class="bg-white border-gray-200 font-montserrat">
+<nav class="bg-white @if (Request::is('contact')) bg-blue-50 @endif border-gray-200 font-montserrat">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="https://flowbite.com/" class="flex items-center">
             <img src="{{ asset('img/hippocampuss.png') }}" class="h-10 mr-1" alt="Flowbite Logo" />
@@ -87,7 +87,7 @@
                     <li>
                         <a href="/dashboard"
                             class="block py-2 pl-3 pr-4 text-grey-700 rounded lg:bg-transparent
-                    hover:text-blue-500 @if (Request::is('contact')) text-blue-700 bg-blue-50 @endif lg:p-0">dashboard</a>
+                    hover:text-blue-500 @if (Request::is('dashboard')) text-blue-700 bg-blue-50 @endif lg:p-0">dashboard</a>
                     </li>
                 @endauth
             </ul>
