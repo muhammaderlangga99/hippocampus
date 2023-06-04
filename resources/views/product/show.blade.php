@@ -23,7 +23,7 @@
         }
     </style>
     <section class="categori mt-20 font-montserrat">
-        <h2 class="text-5xl font-bold text-slate-900 text-center">In Category {{ $title }}</h2>
+        <h2 class="text-3xl md:text-5xl font-bold text-slate-900 text-center">In Category {{ $title }}</h2>
 
         <div class="grid m-auto max-w-7xl gap-y-3 grid-cols-2 lg:grid-cols-4 md:grid-cols-3 mt-16">
             @foreach ($items as $item)
@@ -40,7 +40,7 @@
                         </div>
                         <div class="title w-11/12 mt-3 pb-3 m-auto">
                             <h4
-                                class="tulisan inline-block text-xl font-semibold font-poppins leading-tight tracking-normal duration-500">
+                                class="tulisan inline-block text-base md:text-xl font-semibold font-poppins leading-tight tracking-normal duration-500">
                                 <span class="link link-underline link-underline-black">
                                     {{ $item->name }}
                                     {{-- @if ($item->discount > 0)

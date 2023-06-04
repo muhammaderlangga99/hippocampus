@@ -37,7 +37,7 @@
                         </div>
                         <div class="title w-11/12 mt-3 pb-3 m-auto">
                             <h4
-                                class="tulisan inline-block text-xl font-semibold font-poppins leading-tight tracking-normal duration-500">
+                                class="tulisan inline-block text-base md:text-xl font-semibold font-poppins leading-tight tracking-normal duration-500">
                                 <span class="link link-underline link-underline-black">
                                     {{ $item->name }}
                                     {{-- @if ($item->discount > 0)
