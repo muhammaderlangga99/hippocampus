@@ -8,10 +8,8 @@
                     <h1 class="text-2xl md:text-3xl font-bold text-center text-blue-700">Craftsman of Underwater
                         Equipment
                     </h1>
-                    <p class="text-center text-sm md:text-base text-gray-700">Lorem ipsum dolor, sit amet consectetur
-                        adipisicing
-                        elit. Esse, vel perspiciatis, maiores ducimus reiciendis, saepe labore magni eius eligendi iusto
-                        sed quae voluptatem accusamus illum doloremque! Earum eos impedit aliquid.</p>
+                    <p class="text-center text-base md:text-base text-gray-700">Dive Into Adventure: Explore the Depths
+                        with Hippocampus Indonesia!</p>
                 </div>
             </div>
         </div>

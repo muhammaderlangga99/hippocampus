@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\CategoriController;
-use App\Http\Controllers\ContactController;
+use App\Models\User;
 use App\Models\Items;
+use App\Models\Categori;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemsController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
-use App\Models\Categori;
+use App\Http\Controllers\CategoriController;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,7 +83,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    // Route::post('/register', [ProfileController::class, 'store'])->name('profile.store');
+    Route::delete('/user/{user:name}', function (User $user) {
+        User::where('name', $user->name)->delete();
+        return redirect('/user')->with('success', 'User has been deleted');
+    })->name('user.destroy');
     // post keranjang
     Route::controller(ItemsController::class)->group(function () {
         Route::get('/items', [ItemsController::class, 'index'])->name('items.index');
@@ -103,6 +107,7 @@ Route::middleware('auth')->group(function () {
         Route::delete('/categori/{categori:slug}', [CategoriController::class, 'destroy'])->name('categori.destroy');
     });
 
+    // contact
     Route::controller(ContactController::class)->group(function () {
         Route::get('/contacts', [ContactController::class, 'index'])->name('contact.index');
         Route::post('/contacts', [ContactController::class, 'store'])->name('contact.store');
@@ -110,6 +115,14 @@ Route::middleware('auth')->group(function () {
         Route::patch('/contacts/{contact:slug}', [ContactController::class, 'update'])->name('contact.update');
         Route::delete('/contacts/{contact}', [ContactController::class, 'destroy'])->name('contact.destroy');
     });
+
+    // user
+    Route::get('/user', function () {
+        return view('user.index', [
+            'title' => 'User',
+            'users' => User::oldest()->paginate(8),
+        ]);
+    })->name('user.index');
 });
 
 Route::post('/contacts', [ContactController::class, 'store'])->name('contact.store');

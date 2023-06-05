@@ -29,9 +29,9 @@
                 <p class="text-blue-500 font-medium">Our Product</p>
                 <h2 class="mb-2 text-3xl font-extrabold tracking-tight text-gray-900">Provide underwater equipment for
                     various activities</h2>
-                <p class="mb-4 lg:text-lg">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis vero
-                    illum ipsum id laudantium sunt omnis sequi inventore laboriosam, officia, fuga nam tenetur? Porro,
-                    quos.</p>
+                <p class="mb-4 lg:text-lg">We Providing underwater equipment for various activities plays a crucial role
+                    in
+                    enabling individuals to explore the mesmerizing world beneath the surface.</p>
                 <a href="/blog"
                     class="inline-flex items-center justify-center w-full px-4 py-3 mb-6 mr-2 text-sm font-medium bg-blue-700 border border-gray-200 rounded-full sm:w-auto focus:outline-none hover:bg-blue-800 hover:text-slate-50 focus:z-10 focus:ring-4 focus:ring-gray-200 text-white shadow-2xl shadow-blue-500">See
                     detail <i class="bi bi-arrow-right pl-2 animate-next"></i></a>

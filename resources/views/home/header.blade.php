@@ -19,18 +19,18 @@
 </style>
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 {{--  html --}}
-<header class="relative font-montserrat">
+<header class="relative font-montserrat mt-5">
     <div class="img">
-        <canvas></canvas>
-        <div class='blur'></div>
-        <div class="captions h-screen flex items-center translate-y-28 flex-col relative">
-            <img src="{{ asset('img/hd header1.png') }}" class="h-3/5 md:h-4/5 absolute md:-mt-20 lg:-mt-24"
-                alt="hippocampus" data-aos="zoom-in" data-aos-delay="2000">
-            <h1 class="text-4xl lg:text-6xl font-bold w-9/12 text-blue-600 -mt-10 md:-mt-0 text-center tracking-wide md:leading-relaxed"
-                id="header"></h1>
-        </div>
+        <canvas class="absolute"></canvas>
+        <div class='blur absolute'></div>
     </div>
 </header>
+<div class="captions h-screen flex items-center flex-col relative translate-y-14 font-montserrat">
+    <img src="{{ asset('img/hd header1.png') }}" class="h-3/5 md:h-4/5 absolute md:-mt-20 lg:-mt-24" alt="hippocampus"
+        data-aos="zoom-in" data-aos-delay="2000">
+    <h1 class="text-4xl lg:text-6xl font-bold w-9/12 text-blue-600 -mt-10 md:-mt-0 text-center tracking-wide md:leading-relaxed"
+        id="header"></h1>
+</div>
 
 {{-- javascript --}}
 
@@ -46,7 +46,7 @@
 {{-- waves --}}
 <script>
     var typed = new Typed('#header', {
-        strings: ['Hippocampus', 'Let the waves carry you where the light can not.'],
+        strings: ['Hippocampus', 'Let the waves carry you <br>where the light can not.'],
         typeSpeed: 30,
         backSpeed: 50,
         showCursor: false,
@@ -60,6 +60,7 @@
     const width = canvas.width = window.innerWidth;
     const height = canvas.height = window.innerHeight;
 
+    // membuat canvas full screen
     const lava = {
         count: 100,
         springs: [],
@@ -153,6 +154,7 @@
 
             lava.draw();
         },
+        // membuat lava kembali ke posisi awal
         reset: () => {
             lava.hit = false;
             let dy = Math.floor(range(height / 2 + height / 10, height / 2 - height / 10));
@@ -161,6 +163,7 @@
 
             return dy;
         },
+        // membuat lava jatuh ke posisi yang ditentukan
         drop: (x, m) => {
             let seed = Math.floor(x / (width / lava.count));
             if (seed % 2 !== 0) {
@@ -170,19 +173,22 @@
         }
     }
 
+    // membuat angka random untuk menentukan posisi lava
     const range = (min, max) => {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
+    // membuat lava jatuh setiap 5 detik
     setInterval(() => {
         lava.drop(range(0, width), range(100, 250));
         lava.reset();
     }, 5000);
 
 
-    lava.init();
-    lava.drop(range(0, width), range(100, 250));
-    lava.reset();
+    // membuat lava bergerak
+    lava.init(); // membuat lava
+    lava.drop(30, 100); //fungsi .drop() untuk membuat lava jatuh ke posisi yang ditentukan
+    lava.reset(); // untuk membuat lava kembali ke posisi awal
 
     (loop = () => {
         requestAnimationFrame(loop);

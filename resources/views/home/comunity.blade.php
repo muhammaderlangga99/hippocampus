@@ -12,11 +12,9 @@
                 <p class="text-blue-500 font-medium">communities</p>
                 <h2 class="mb-4 text-3xl font-extrabold tracking-tight text-gray-900">Crafting the Indonesian sea
                     through free diving communities</h2>
-                <p class="mb-3 lg:text-base tracking-wider font-light text-slate-700">Deliver great service
-                    experiences
-                    fast - without the complexity of
-                    traditional ITSM solutions. Accelerate critical development work, eliminate toil, and deploy changes
-                    with ease.</p>
+                <p class="mb-3 lg:text-base tracking-wider font-light text-slate-700"> These communities of free divers
+                    have formed a tight-knit network, united by their love for the
+                    ocean and their desire to discover the hidden wonders beneath the surface. </p>
                 <a href="https://www.instagram.com/hippocampusindonesia/"
                     class="inline-flex items-center font-semibold text-blue-600 lg:text-base text-md hover:underline">See
                     our communities

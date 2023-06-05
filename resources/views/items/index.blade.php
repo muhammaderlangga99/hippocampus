@@ -109,8 +109,6 @@
                                 @endif
                             </td>
                             <td class="px-6 py-4 text-right space-x-3">
-                                <a href="/items/{{ $item->slug }}"
-                                    class="font-medium text-green-600 dark:text-green-500 hover:underline">Detail</a> |
                                 <a href="/items/{{ $item->slug }}/edit"
                                     class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a> |
                                 <form action="/items/{{ $item->slug }}" method="post" class="inline">
