@@ -55,12 +55,11 @@ class ItemsController extends Controller
     {
         $validate = $request->validate([
             'category' => 'required',
-            'link' => 'required | url',
-            'name' => 'required | max:255',
+            'link' => 'required',
+            'name' => 'required',
             'content' => 'required',
-            'image' => 'required | image ',
+            'image' => 'required',
             'price' => 'required',
-            'description' => 'required'
         ]);
 
         //count percentage discount
@@ -133,11 +132,11 @@ class ItemsController extends Controller
 
 
         // upload image to storage/app/items
-        if ($request->hasFile('image')) {
-            $validate['image'] = $request->file('image')->store('items');
+        if ($request->hasFile('image')) { // if image is uploaded
+            $validate['image'] = $request->file('image')->store('items'); // store image to storage/app/items
             Storage::delete($item->image);
         } else {
-            $validate['image'] = $item->image;
+            $validate['image'] = $item->image; // use old image
         }
 
         Items::where('id', $item->id)

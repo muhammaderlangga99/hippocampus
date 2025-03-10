@@ -2,7 +2,7 @@
     <h3 class="text-5xl font-bold text-slate-900 text-center">Create Post Product</h3>
 
 
-    <form method="POST" action="{{ route('items.store') }}" class="mt-10 lg:w-10/12 m-auto" enctype="multipart/form-data">
+    <form method="post" action="{{ route('items.store') }}" class="mt-10 lg:w-10/12 m-auto" enctype="multipart/form-data">
         @csrf
 
         <div class="flex items-center justify-center w-full mb-6">
